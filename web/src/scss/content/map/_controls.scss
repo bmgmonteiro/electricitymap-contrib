@@ -6,7 +6,7 @@
     flex-direction: column;
 
     @include respond-to('small') {
-        top: 148px;   
+        display: none;
     }
 }
 
@@ -38,7 +38,7 @@
     right: 16px;
 
     @include respond-to('small') {
-        top: 16px;
+        display: none;
     }
 }
 
