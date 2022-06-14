@@ -93,11 +93,13 @@
 .mapboxgl-zoom-controls {
     right: 16px !important;
     top: 69px !important;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.15);
+    position: absolute;
     transition: box-shadow .4s;
     user-select: none;
 
     @include respond-to('small') {
-        top: 66px !important;
+        display: none;
     }
 
     &:hover {
