@@ -7,6 +7,7 @@ import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import { defineConfig } from 'vite';
 // import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import replace from '@rollup/plugin-replace';
 
 const manualChunkMap = {
   '@sentry': 'sentry',
@@ -23,6 +24,7 @@ export default defineConfig(({ mode }) => ({
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },
+  server: { host: '127.0.0.1' },
   build: {
     sourcemap: true,
     rollupOptions: {
@@ -37,6 +39,7 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
+  treeshake: 'smallest',
   test: {
     css: false,
     include: ['src/**/*.test.{ts,tsx}'],
@@ -47,12 +50,15 @@ export default defineConfig(({ mode }) => ({
     coverage: {
       provider: 'istanbul',
       enabled: false,
-      '100': true,
+      100: true,
       reporter: ['text', 'lcov'],
       reportsDirectory: 'coverage',
     },
   },
   plugins: [
+    replace({
+      __SENTRY_TRACING__: false,
+    }),
     tsconfigPaths(),
     react({
       babel: {
