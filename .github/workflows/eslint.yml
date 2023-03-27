@@ -2,8 +2,6 @@ name: ESLint
 
 on:
   workflow_call:
-  schedule:
-
 jobs:
   eslint:
     name: Check
